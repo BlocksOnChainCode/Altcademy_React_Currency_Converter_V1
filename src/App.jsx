@@ -16,6 +16,7 @@ const Header = (props) => {
 const Card = (props) => {
   return (
     // ! React Fragments are used to group a list of children without adding extra nodes to the DOM.
+    // ? [@...DAVID], is there some sort of convention for when to NOT use a fragment? 
     <>
     <div className="card">
       <select name='base-currency' id='base-currency' value={props.baseCurrency} onChange={(e) => props.setBaseCurrency(e.target.value)}>
@@ -40,7 +41,16 @@ const Card = (props) => {
   )
 }
 
-
+const Result = (props) => {
+  return (
+    <div className="result">
+      <p>
+        <span className="currency">{props.quoteCurrency} </span>
+        <span className="amount">{props.converted}</span>
+      </p>
+    </div>
+  )
+}
 
 
 
@@ -127,15 +137,10 @@ function App() {
       <Header baseCurrency={baseCurrency} quoteCurrency={quoteCurrency} rate={rate} />
       <main>
         <Card baseCurrency={baseCurrency} setBaseCurrency={setBaseCurrency} quoteCurrency={quoteCurrency} setQuoteCurrency={setQuoteCurrency} />
+        <Result quoteCurrency={quoteCurrency} converted={converted} />
       </main>
   
-      {/* // TODO: Make the result a component that takes in the state of converted and quoteCurrency as props. */}
-      <div className="result">
-        <p>
-          <span className="currency">{quoteCurrency} </span>
-          <span className="amount">{converted}</span>
-        </p>
-      </div>
+     
 
     {/*   // TODO: Make the input a component that takes in the state of amount and the convert function as props. */}
       <div className='input-wrapper'>
