@@ -52,7 +52,21 @@ const Result = (props) => {
   )
 }
 
+const Input = (props) => {
+  return (
+    <div className='input-wrapper'>
+      <input type="number" value={props.amount} onChange={props.convert}/>
+    </div>
+  )
+}
 
+const ChartComponent = (props) => {
+  return (
+    <div className="chart-wrapper">
+      <canvas ref={props.chartRef} /> 
+    </div>
+  )
+}
 
 function App() {
   // ! Hooks are used to manage state in functional components in modern React.
@@ -138,20 +152,12 @@ function App() {
       <main>
         <Card baseCurrency={baseCurrency} setBaseCurrency={setBaseCurrency} quoteCurrency={quoteCurrency} setQuoteCurrency={setQuoteCurrency} />
         <Result quoteCurrency={quoteCurrency} converted={converted} />
+        <Input amount={amount} convert={convert} />
+        <ChartComponent chartRef={chartRef} />
       </main>
-  
-     
-
-    {/*   // TODO: Make the input a component that takes in the state of amount and the convert function as props. */}
-      <div className='input-wrapper'>
-        <input type="number" value={amount} onChange={convert}/>
-      </div>
-
-      {/* // TODO: Make the chart a component that takes in the state of historicalData as props. */}
-      {/* // ? where to scope the useEffect hook for this one? */}
-      <div className="chart-wrapper">
-        <canvas ref={chartRef} /> 
-      </div>
+{/*       <footer>
+        <p>Created by Arno Luyckx for the Altcademy React course.</p>
+      </footer> */}
     </>
     </div>
   )
