@@ -144,6 +144,13 @@ function App() {
       });
   };
 
+  const convert = (e) => {
+    const amount = e.target.value;
+    const convertedAmount = (amount * rate).toFixed(2);
+    setAmount(amount);
+    setConverted(convertedAmount);
+  };
+
   useEffect(() => {
     fetchExchangeRate();
     fetchHistoricalData();
@@ -179,13 +186,7 @@ function App() {
     };
   }, [chartRef, historicalData, baseCurrency, quoteCurrency]);
 
-  const convert = (e) => {
-    const amount = e.target.value;
-    const convertedAmount = (amount * rate).toFixed(2);
-    setAmount(amount);
-    setConverted(convertedAmount);
-  };
-
+  // ! main return
   return (
     <div className="App">
       <>
